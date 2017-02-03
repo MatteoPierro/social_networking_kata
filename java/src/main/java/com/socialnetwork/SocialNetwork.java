@@ -1,7 +1,9 @@
 package com.socialnetwork;
 
+import java.util.List;
+
 public interface SocialNetwork {
     void publish(String user, String message);
 
-    void timelineFor(String user);
+    List<String> timelineFor(String user);
 }

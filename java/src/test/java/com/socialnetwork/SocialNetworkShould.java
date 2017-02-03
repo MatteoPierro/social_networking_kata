@@ -5,7 +5,10 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import static java.util.Collections.singletonList;
+import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class SocialNetworkShould {
@@ -28,9 +31,10 @@ public class SocialNetworkShould {
     @Test
     public void view_Alice_timeline() throws Exception {
         SocialNetworkCommandLine commandLine = new SocialNetworkCommandLine(socialNetwork);
+        when(socialNetwork.timelineFor("Alice")).thenReturn(singletonList("I love the weather today (5 minutes ago)"));
 
-        commandLine.execute("Alice");
+        String output = commandLine.execute("Alice");
 
-        verify(socialNetwork).timelineFor("Alice");
+        assertEquals("I love the weather today (5 minutes ago)", output);
     }
 }
