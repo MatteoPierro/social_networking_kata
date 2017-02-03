@@ -8,14 +8,9 @@ public class SocialNetworkCommandLine {
     }
 
     public void execute(String command) {
-        if (command.startsWith("Alice")) {
-            socialNetwork.publish("Alice", "I love the weather today");
-        } else {
-            if (command.contains("Damn")) {
-                socialNetwork.publish("Bob", "Damn! We lost!");
-            } else {
-                socialNetwork.publish("Bob", "Good game though.");
-            }
-        }
+        String[] parts = command.split(" -> ");
+        String username = parts[0];
+        String message = parts[1];
+        socialNetwork.publish(username, message);
     }
 }
