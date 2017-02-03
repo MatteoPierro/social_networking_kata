@@ -24,4 +24,13 @@ public class SocialNetworkShould {
         verify(socialNetwork).publish("Bob", "Damn! We lost!");
         verify(socialNetwork).publish("Bob", "Good game though.");
     }
+
+    @Test
+    public void view_Alice_timeline() throws Exception {
+        SocialNetworkCommandLine commandLine = new SocialNetworkCommandLine(socialNetwork);
+
+        commandLine.execute("Alice");
+
+        verify(socialNetwork).timelineFor("Alice");
+    }
 }

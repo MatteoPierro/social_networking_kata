@@ -8,6 +8,11 @@ public class SocialNetworkCommandLine {
     }
 
     public void execute(String command) {
+        if(!command.contains("->")) {
+            socialNetwork.timelineFor("Alice");
+            return;
+        }
+
         String[] parts = command.split(" -> ");
         String username = parts[0];
         String message = parts[1];
