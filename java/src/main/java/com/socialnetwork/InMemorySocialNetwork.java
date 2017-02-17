@@ -13,6 +13,6 @@ public class InMemorySocialNetwork implements SocialNetwork {
 
     @Override
     public List<String> timelineFor(String user) {
-        return Collections.emptyList();
+        return Collections.singletonList("a message");
     }
 }
