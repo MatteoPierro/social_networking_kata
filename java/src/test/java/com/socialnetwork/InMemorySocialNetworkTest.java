@@ -8,32 +8,25 @@ import static org.junit.Assert.assertEquals;
 
 public class InMemorySocialNetworkTest {
 
-    @Test
-    public void
-    publish_and_retrieve_message() throws Exception {
-        InMemorySocialNetwork socialNetwork = new InMemorySocialNetwork();
-
-        socialNetwork.publish("Alice", "a message");
-        List<String> messages = socialNetwork.timelineFor("Alice");
-
-        assertEquals(1, messages.size());
-        assertEquals("a message", messages.get(0));
-    }
+    private static final String ALICE = "Alice";
+    private static final String ALICE_MESSAGE = "a message";
+    private static final String BOB = "Bob";
+    private static final String BOB_MESSAGE = "another message";
 
     @Test
     public void
     publish_and_retrieve_message_for_multiple_timelines() throws Exception {
-        InMemorySocialNetwork socialNetwork = new InMemorySocialNetwork();
+        SocialNetwork socialNetwork = new InMemorySocialNetwork();
 
-        socialNetwork.publish("Alice", "a message");
-        List<String> aliceMessages = socialNetwork.timelineFor("Alice");
+        socialNetwork.publish(ALICE, ALICE_MESSAGE);
+        socialNetwork.publish(BOB, BOB_MESSAGE);
 
-        socialNetwork.publish("Bob", "another message");
-        List<String> bobMessages = socialNetwork.timelineFor("Bob");
+        assertThatContainsOnly(ALICE_MESSAGE, socialNetwork.timelineFor(ALICE));
+        assertThatContainsOnly(BOB_MESSAGE, socialNetwork.timelineFor(BOB));
+    }
 
-        assertEquals(1, aliceMessages.size());
-        assertEquals("a message", aliceMessages.get(0));
-        assertEquals(1, bobMessages.size());
-        assertEquals("another message", bobMessages.get(0));
+    private static void assertThatContainsOnly(String message, List<String> messages) {
+        assertEquals(1, messages.size());
+        assertEquals(message, messages.get(0));
     }
 }
