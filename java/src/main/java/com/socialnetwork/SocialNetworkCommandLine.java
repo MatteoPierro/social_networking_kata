@@ -11,7 +11,7 @@ public class SocialNetworkCommandLine {
     }
 
     public SocialNetworkCommandLine() {
-
+        this.socialNetwork = new InMemorySocialNetwork();
     }
 
     public String execute(String command) {
