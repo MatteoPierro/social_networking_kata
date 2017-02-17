@@ -7,7 +7,7 @@ public class InMemorySocialNetwork implements SocialNetwork {
 
     @Override
     public void publish(String user, String message) {
-        List<String> userMessages = messages.getOrDefault(user, new ArrayList<>());
+        List<String> userMessages = timelineFor(user);
         userMessages.add(message);
         messages.put(user, userMessages);
     }
