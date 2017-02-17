@@ -10,6 +10,10 @@ public class SocialNetworkCommandLine {
         this.socialNetwork = socialNetwork;
     }
 
+    public SocialNetworkCommandLine() {
+
+    }
+
     public String execute(String command) {
         if(!command.contains("->")) {
             List<String> messages = socialNetwork.timelineFor("Alice");
