@@ -1,18 +1,19 @@
 package com.socialnetwork;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class InMemorySocialNetwork implements SocialNetwork {
-
+    private Map<String, List<String>> messages = new HashMap<>();
 
     @Override
     public void publish(String user, String message) {
-
+        List<String> userMessages = messages.getOrDefault(user, new ArrayList<>());
+        userMessages.add(message);
+        messages.put(user, userMessages);
     }
 
     @Override
     public List<String> timelineFor(String user) {
-        return Collections.singletonList("a message");
+        return messages.getOrDefault(user, new ArrayList<>());
     }
 }
